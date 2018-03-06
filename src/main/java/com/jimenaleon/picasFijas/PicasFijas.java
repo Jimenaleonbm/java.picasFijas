@@ -63,16 +63,13 @@ public class PicasFijas {
 	
 	public PicasFijas compararNumero(String[] numeroAComparar) {
 		
-
 		PicasFijas intento = new PicasFijas(0,0);
-		
 		
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
 				
 				if(numeroAleatorio[i].equals(numeroAComparar[j]) && i != j) {
-					intento.picas += 1;
-					
+					intento.picas += 1;	
 				}
 			}
 			
