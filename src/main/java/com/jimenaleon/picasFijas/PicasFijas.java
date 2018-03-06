@@ -3,6 +3,8 @@ package com.jimenaleon.picasFijas;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Collections;
 
 
@@ -37,11 +39,23 @@ public class PicasFijas {
 	public void jugar() {
 		while(!this.juegoFinalizado) {			
 			System.out.println("Ingrese un numero de cuatro digitos");
-			Scanner scanner = new Scanner(System.in);		
-			String[] numeroAComparar = scanner.nextLine().split("");
-			compararNumero(numeroAComparar);
-			//scanner.close();
+			Scanner scanner = new Scanner(System.in);	
+			String datoIngresado = scanner.nextLine();
+			//
+			if(validarDato(datoIngresado)) {
+				String[] numeroAComparar = datoIngresado.split("");
+				compararNumero(numeroAComparar);
+			}else {
+				scanner.close();
+				throw new AssertionError("dato invalido");
+			}
 		}
+	}
+	
+	public boolean validarDato(String cadena) {
+		Pattern validacion = Pattern.compile("[0-9]{4}");
+		Matcher mat = validacion.matcher(cadena);
+		return mat.matches() ? true: false;
 	}
 	
 	public String[] desorganizarLista(){
